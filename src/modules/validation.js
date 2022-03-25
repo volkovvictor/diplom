@@ -10,6 +10,10 @@ const validation = () => {
          if (input.getAttribute('name') === 'phone') {
             input.value = input.value.replace(/[^\+\d]/g, '').slice(0, 16);
          }
+
+         if (input.getAttribute('name') === 'calc-input') {
+            input.value = input.value.replace(/[^\d]/g, '');
+         }
       });
    });
 };

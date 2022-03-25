@@ -1,4 +1,4 @@
-const sendForm = () => {
+const sendForm = ({element = []}) => {
    const forms = document.querySelectorAll('form');
 
    const validate = (inputs) => {
@@ -36,6 +36,20 @@ const sendForm = () => {
 
       formData.forEach((value, key) => {
          formBody[key] = value;
+      });
+
+      element.forEach(item => {
+         const elem = document.getElementById(item.id);
+
+         if (!elem) return;
+
+         if(item.type === 'block') {
+            formBody[elem.id] = elem.textContent;
+         }
+   
+         if(item.type === 'input') {
+            formBody[item.id] = elem.value;
+         }
       });
 
       if (validate(inputs)) {
